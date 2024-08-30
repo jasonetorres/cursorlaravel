@@ -5,27 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EasyCal - Simple Calendar App</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto px-4 py-16">
-        <h1 class="text-4xl font-bold text-center mb-8">Welcome to EasyCal</h1>
-        <p class="text-center mb-8">Your simple and easy-to-use calendar app</p>
-        
-        <div class="flex flex-col items-center space-y-4">
-            @if (Route::has('login'))
-                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+<body class="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-400 to-purple-500">
+    <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-xl">
+        <div class="text-center">
+            <h1 class="mb-2 text-4xl font-bold text-gray-800">Welcome to EasyCal</h1>
+            <p class="mb-8 text-gray-600">Your simple and easy-to-use calendar app</p>
+        </div>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-            
+        <div class="space-y-4">
+            @auth
+                <a href="{{ url('/dashboard') }}" class="block w-full px-4 py-3 font-semibold text-center text-white transition duration-300 bg-blue-500 rounded-lg hover:bg-blue-600">
+                    Go to Dashboard
+                </a>
+            @else
+                <a href="{{ route('login') }}" class="block w-full px-4 py-3 font-semibold text-center text-white transition duration-300 bg-blue-500 rounded-lg hover:bg-blue-600">
+                    Log in
+                </a>
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="block w-full px-4 py-3 font-semibold text-center text-white transition duration-300 bg-purple-500 rounded-lg hover:bg-purple-600">
+                        Register
+                    </a>
+                @endif
+            @endauth
+        </div>
+
+        <div class="mt-8 text-sm text-center text-gray-600">
+            <p>&copy; {{ date('Y') }} EasyCal. All rights reserved.</p>
         </div>
     </div>
 </body>
