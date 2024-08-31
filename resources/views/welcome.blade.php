@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EasyCal - Simple Calendar App</title>
+    <title>SmartCal - The SMART Calendar App</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -15,7 +15,7 @@
 <body class="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-400 to-purple-500">
     <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-xl">
         <div class="text-center">
-            <h1 class="mb-2 text-4xl font-bold text-gray-800">Welcome to EasyCal</h1>
+            <h1 class="mb-2 text-4xl font-bold text-gray-800">Welcome to SmartCal</h1>
             <p class="mb-8 text-gray-600">Your simple and easy-to-use calendar app</p>
         </div>
 
@@ -37,7 +37,7 @@
         </div>
 
         <div class="mt-8 text-sm text-center text-gray-600">
-            <p>&copy; {{ date('Y') }} EasyCal. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} SmartCal. Jason Torres.</p>
         </div>
     </div>
 </body>

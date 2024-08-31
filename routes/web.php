@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TimeSlotController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,6 +32,15 @@ Route::middleware('auth')->group(function () {
     // Settings routes
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
     Route::patch('/settings', [SettingsController::class, 'update'])->name('settings.update');
+
+    Route::middleware(['auth'])->group(function () {
+        Route::post('/time-slots', [TimeSlotController::class, 'store']);
+        Route::get('/time-slots', [TimeSlotController::class, 'index']);
+    });
 });
+
+Route::get('/time-slots/create', [TimeSlotController::class, 'create'])->name('time-slots.create');
+
+Route::post('/bookings/{timeSlot}', [BookingController::class, 'store']);
 
 require __DIR__.'/auth.php';
