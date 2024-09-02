@@ -2,63 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AvailabilityBlock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AvailabilityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        // Fetch availability blocks for the authenticated user
+        $availabilityBlocks = AvailabilityBlock::where('user_id', Auth::id())->get();
+
+        // Return the view with the availability blocks
+        return view('availability.index', compact('availabilityBlocks'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('availability.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
+        // Validate the request data
+        $request->validate([
+            'date' => 'required|date',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i|after:start_time',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        // Store the availability in the database
+        AvailabilityBlock::create([
+            'user_id' => Auth::id(),
+            'date' => $request->input('date'),
+            'start_time' => $request->input('start_time'),
+            'end_time' => $request->input('end_time'),
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        // Redirect or return a response
+        return redirect()->route('availability.create')->with('success', 'Availability created successfully.');
     }
 }

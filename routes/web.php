@@ -6,6 +6,8 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TimeSlotController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\AvailabilityController;
+use App\Http\Controllers\MeetingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -37,6 +39,18 @@ Route::middleware('auth')->group(function () {
         Route::post('/time-slots', [TimeSlotController::class, 'store']);
         Route::get('/time-slots', [TimeSlotController::class, 'index']);
     });
+});
+
+// Meeting routes
+Route::middleware(['auth'])->group(function () {
+    Route::resource('availability', AvailabilityController::class)->only(['index', 'create', 'store']);
+    Route::resource('meetings', MeetingController::class)->only(['index', 'create', 'store']);
+});
+
+Route::middleware(['web', 'auth'])->group(function () {
+    Route::get('/availability', [AvailabilityController::class, 'index'])->name('availability.index');
+    Route::get('/availability/create', [AvailabilityController::class, 'create'])->name('availability.create');
+    Route::post('/availability', [AvailabilityController::class, 'store'])->name('availability.store');
 });
 
 Route::get('/time-slots/create', [TimeSlotController::class, 'create'])->name('time-slots.create');

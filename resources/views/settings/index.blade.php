@@ -39,7 +39,21 @@
                             </x-primary-button>
                         </div>
                     </form>
-                </div>
+
+         <!-- Availability Settings Links -->
+                    <div class="mt-8">
+                        <h3 class="text-lg font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                            {{ __('Availability Settings') }}
+                        </h3>
+                        <div class="mt-4 space-y-4">
+                            <a href="{{ route('availability.index') }}" class="px-4 py-2 text-sm font-medium text-white transition duration-150 ease-in-out bg-green-600 rounded-md hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                                {{ __('View Availability') }}
+                            </a>
+                            <a href="{{ route('availability.create') }}" class="px-4 py-2 text-sm font-medium text-white transition duration-150 ease-in-out bg-green-600 rounded-md hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                                {{ __('Create Availability') }}
+                            </a>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
